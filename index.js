@@ -1,5 +1,6 @@
 var spawn = require('duplex-child-process').spawn;
 var fs = require('fs');
+var path = require('path');
 var osascript = spawn('osascript');
 
 var noFileMsg = 'You need to specify filename';
@@ -16,7 +17,7 @@ module.exports.file = function (file, opts, cb) {
   }
   if(!validateInput(file, cb, noFileMsg)) return;
 
-  var stream = fs.createReadStream(file).pipe(getSpawn(opts));
+  var stream = fs.createReadStream(file).pipe(getSpawn(opts, file));
   if (cb) bufferStream(stream, cb);
 
   return stream;
@@ -70,15 +71,26 @@ function bufferStream (stream, cb) {
   return stream;
 }
 
-function getSpawn (opts) {
-  return spawn('osascript', argify(opts));
+function getSpawn (opts, file) {
+  return spawn('osascript', argify(opts, file));
 }
 
-function argify (opts) {
+function argify (opts, file) {
   opts = opts || {};
-  if (opts.appleScript) {
+
+  if ((file && isAppleScript(file) && !opts.type) ||
+      (opts.type && opts.type.toLowerCase() === 'applescript')) {
     return [];
   }
 
+  if (opts.type) {
+    return ['-l', opts.type.toLowerCase()];
+  }
+
   return ['-l', 'JavaScript'];
+}
+
+function isAppleScript (file) {
+  var ext = path.extname(file);
+  return (ext === '.scpt' || ext.toLowerCase() === '.applescript');
 }

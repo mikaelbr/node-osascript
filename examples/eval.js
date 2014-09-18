@@ -4,9 +4,9 @@ var script = 'display dialog "What should I do?" buttons {"Go home", "Work", "No
   'set DlogResult to result\n' +
   'return result';
 
-osascript(script, { appleScript: true }).pipe(process.stdout);
+osascript(script, { type: 'AppleScript' }).pipe(process.stdout);
 
 // With callback
-osascript(script, { appleScript: true }, function (err, data) {
+osascript(script, { type: 'AppleScript' }, function (err, data) {
   console.log("Data:", data);
 });
