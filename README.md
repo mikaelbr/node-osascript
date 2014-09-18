@@ -1,5 +1,7 @@
-osascript – Node module for doing Apple Automation in JavaScript or AppleScript
+osascript
 ===
+
+> Node.js module for doing Apple Open Scripting Architecture (OSA) in JavaScript or AppleScript.
 
 ## Install
 ```
@@ -9,13 +11,15 @@ npm install --save osascript
 ## Requirements
 
 For using JavaScript as Automation language, Mac OS X Yosemite is required.
-On versions before that, you can activate the AppleScript mode.
+On versions before that, you can pass AppleScripts.
 
 ## Usage
 
-By default (without options), all scripts passed are assumed to be
-JavaScript. See the last example for overriding this behaviour and
-passing on AppleScript instead. All API are the same.
+By default, if no other type is defined and the passed file is not a AppleScript
+file (with extensions `.scpt` or `.applescript`), JavaScript is used.
+
+See the last example for overriding this behaviour and passing on AppleScript
+instead. All API's are the same.
 
 ### Default stream
 
@@ -81,11 +85,9 @@ osascript('console.log("Hello, world!");', function (err, data) {
 
 As JavaScript as OSA isn't working on versions before Yosemite,
 we can use AppleScript as well. JavaScript is the default
-to try to encourage JS instead of AppleScript.
-
-
-All previous examples apply, but passing an `option` with
-property `appleScript: true`.
+to try to encourage JS instead of AppleScript. When
+a filename is passed, AppleScript will be used if the filename
+has an AppleScript extension (`.scpt` or `.applescript`).
 
 
 ```javascript
@@ -94,7 +96,8 @@ var fs = require('fs');
 
 // Run JavaScript file through OSA
 fs.createReadStream('someAppleScript.applescript')
-  .pipe(osascript({ appleScript: true }))
+  // Need to override options to define AppleScript
+  .pipe(osascript({ type: 'AppleScript' }))
   .pipe(process.stdout);
 ```
 
@@ -102,23 +105,53 @@ fs.createReadStream('someAppleScript.applescript')
 // note the file method after require ¬
 var osascript = require('osascript').file;
 
-// Run JavaScript file through OSA
-osascript('someFile.js', { appleScript: true }, function (err, data) {
+// No need to pass options, as it can be deduced from filename.
+osascript('someFile.applescript', function (err, data) {
   console.log(err, data);
 });
 ```
 
-... and so on.
-
-
 See [more examples](./examples).
 
+### API
+
+API from base function required in this way:
+
+```
+var osascript = require('osascript');
+```
+
+All endpoints uses `options`:
+
+```
+var defaultOptions = {
+  type: 'JavaScript'
+};
+```
+
+Type is passed as language (flag `-l`) to `osascript`.
+Can be either `JavaScript` (in Yosemite) or `AppleScript`.
+
+##### `osascript([options: Object])`
+
+Creates a PassThrough stream that can get piped text manually
+(text or files).
+
+##### `osascript.file(file[, options: Object, callback:function (err, data)])`
+See `options` as defined above.
+
+If callback function is passed, the buffered output from
+the OSA is passed as data (initiates the data immediately)
+
+##### `osascript.eval(scriptText[, options: Object, callback:function (err, data)])`
+`scriptText` is script in the language type as defined.
+
+See `options` as defined above.
+
+If callback function is passed, the buffered output from
+the OSA is passed as data (initiates the data immediately)
 
 ## TODO
-This is an early alpha written in a hurry before dinner.
-I have some remaining tasks:
 
 * [ ] Tests
-* [ ] Error handling
-* [ ] More?
-* [ ] Dinner
+* [x] Error handling
