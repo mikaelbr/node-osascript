@@ -1,0 +1,25 @@
+{
+  "name": "osascript",
+  "version": "0.5.0",
+  "description": "A stream for controlling macs through applescript or javascript",
+  "main": "index.js",
+  "directories": {
+    "test": "test",
+    "examples": "examples",
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "applescript",
+    "osascript",
+    "apple-javascript",
+    "stream",
+    "spawn"
+  ],
+  "author": "Mikael Brevik <mikaelbre@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "duplex-child-process": "0.0.5"
+  }
+}
