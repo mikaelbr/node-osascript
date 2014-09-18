@@ -117,13 +117,13 @@ See [more examples](./examples).
 
 API from base function required in this way:
 
-```
+```javascript
 var osascript = require('osascript');
 ```
 
 All endpoints uses `options`:
 
-```
+```javascript
 var defaultOptions = {
   type: 'JavaScript'
 };
