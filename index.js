@@ -1,7 +1,6 @@
 var spawn = require('duplex-child-process').spawn;
 var fs = require('fs');
 var path = require('path');
-var osascript = spawn('osascript');
 
 var noFileMsg = 'You need to specify filename';
 var noInputMsg = 'You need to pass text to evaluate';
