@@ -75,18 +75,24 @@ function getSpawn (opts, file) {
 }
 
 function argify (opts, file) {
+  var args;
   opts = opts || {};
+  if (opts.args) {
+    args = ['-'].concat(opts.args);
+  } else {
+    args = [];
+  }
 
   if ((file && isAppleScript(file) && !opts.type) ||
       (opts.type && opts.type.toLowerCase() === 'applescript')) {
-    return [];
+    return [].concat(args);
   }
 
   if (opts.type) {
-    return ['-l', opts.type.toLowerCase()];
+    return ['-l', opts.type.toLowerCase()].concat(args);
   }
 
-  return ['-l', 'JavaScript'];
+  return ['-l', 'JavaScript'].concat(args);
 }
 
 function isAppleScript (file) {

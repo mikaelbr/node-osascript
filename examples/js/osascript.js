@@ -1,4 +1,7 @@
 var app = Application.currentApplication();
 app.includeStandardAdditions = true;
 
-app.displayDialog('Hello World!');
+ObjC.import('Cocoa');
+var args = ObjC.deepUnwrap($.NSProcessInfo.processInfo.arguments).slice(4);
+
+app.displayDialog('Hello World:' + args.join(','));

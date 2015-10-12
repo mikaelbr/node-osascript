@@ -125,12 +125,25 @@ All endpoints uses `options`:
 
 ```javascript
 var defaultOptions = {
-  type: 'JavaScript'
+  type: 'JavaScript',
+  args: [] // List of string arguments
 };
 ```
 
 Type is passed as language (flag `-l`) to `osascript`.
 Can be either `JavaScript` (in Yosemite) or `AppleScript`.
+
+`args` is a list of strings passed in as arguments to your scripts. In JavaScript
+you can access them using:
+
+```js
+ObjC.import('Cocoa');
+var args = ObjC.deepUnwrap($.NSProcessInfo.processInfo.arguments).slice(4);
+```
+
+`.slice(4)` is to cut away program name and language argument. In addition,
+`node-osascript` has to put in a `-` to indicate that the following list of
+strings should be passed as arguments.  This `-` is on index 3.
 
 #### `osascript([options: Object])`
 
