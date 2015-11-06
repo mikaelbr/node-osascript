@@ -89,7 +89,7 @@ function argify (opts, file) {
   }
 
   if (opts.type) {
-    return ['-l', opts.type.toLowerCase()].concat(args);
+    return ['-l', opts.type].concat(args);
   }
 
   return ['-l', 'JavaScript'].concat(args);
