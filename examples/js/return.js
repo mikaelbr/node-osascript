@@ -12,20 +12,20 @@ var script = '(function(){return ["foo",5, {foo: "barz"}]})()';
 
 // Default return
 osascript(script, function (err, data) {
-	if (err == null) {
-		console.log('typeof data ->', typeof data);
-		console.log('data ->', data);
-	} else {
-		console.log(err);
-	}
+  if (err == null) {
+    console.log('typeof data ->', typeof data);
+    console.log('data ->', data);
+  } else {
+    console.log(err);
+  }
 });
 
 // JSON parsable return
 osascript(script, {type: 'JavaScript', flags: ['-s', 's']}, function (err, data) {
-	if (err == null) {
-		console.log('typeof data ->', typeof data);
-		console.log('data ->', data);
-	} else {
-		console.log(err);
-	}
+  if (err == null) {
+    console.log('typeof data ->', typeof data);
+    console.log('data ->', data);
+  } else {
+    console.log(err);
+  }
 });
