@@ -130,8 +130,17 @@ var defaultOptions = {
 };
 ```
 
-Type is passed as language (flag `-l`) to `osascript`.
+Type is passed as language (option `-l`) to `osascript`.
 Can be either `JavaScript` (in Yosemite) or `AppleScript`.
+
+`flags` can be used to change the output style of return values from functions executed by osascript:
+
+```js
+// JSON parsable return
+osascript('(function(){return ["foo",5, {foo: "barz"}]})()', {flags: ['-s', 's']}, function (data) {
+  console.log(data); // ["foo", 5, {"foo":"barz"}]
+});
+```
 
 `args` is a list of strings passed in as arguments to your scripts. In JavaScript
 you can access them using:

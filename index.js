@@ -85,14 +85,14 @@ function argify (opts, file) {
 
   if ((file && isAppleScript(file) && !opts.type) ||
       (opts.type && opts.type.toLowerCase() === 'applescript')) {
-    return [].concat(args);
+    return [].concat(args, opts.flags || []);
   }
 
   if (opts.type) {
-    return ['-l', opts.type.toLowerCase()].concat(args);
+    return ['-l', opts.type].concat(args, opts.flags || []);
   }
 
-  return ['-l', 'JavaScript'].concat(args);
+  return ['-l', 'JavaScript'].concat(args, opts.flags || []);
 }
 
 function isAppleScript (file) {
