@@ -177,3 +177,7 @@ the OSA is passed as data (initiates the data immediately)
 
 * [ ] Tests
 * [x] Error handling
+
+## License
+
+[MIT License](LICENSE)
