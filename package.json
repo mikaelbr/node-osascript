@@ -1,14 +1,8 @@
 {
   "name": "osascript",
   "version": "1.1.0",
-  "description": "A stream for controlling macs through applescript or javascript",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mikaelbr/node-osascript.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mikaelbr/node-osascript/issues"
-  },
+  "description": "A stream for controlling Macs through AppleScript or JavaScript.",
+  "repository": "mikaelbr/node-osascript",
   "main": "index.js",
   "directories": {
     "test": "test",
@@ -22,7 +16,8 @@
     "osascript",
     "apple-javascript",
     "stream",
-    "spawn"
+    "spawn",
+    "jxa"
   ],
   "author": "Mikael Brevik <mikaelbre@gmail.com>",
   "license": "MIT",
