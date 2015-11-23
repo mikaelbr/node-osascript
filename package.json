@@ -9,7 +9,9 @@
     "examples": "examples"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "istanbul cover _mocha -- -R spec",
+    "coveralls": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "applescript",
@@ -26,6 +28,9 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
-    "mocha": "^2.3.4"
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.4",
+    "mocha-lcov-reporter": "^1.0.0"
   }
 }

@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/mikaelbr/node-osascript.svg?branch=master)](https://travis-ci.org/mikaelbr/node-osascript)
+[![Coverage Status](https://coveralls.io/repos/mikaelbr/node-osascript/badge.svg?branch=master&service=github)](https://coveralls.io/github/mikaelbr/node-osascript?branch=master)
 
 osascript
 ===
