@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mikaelbr/node-osascript.svg?branch=master)](https://travis-ci.org/mikaelbr/node-osascript)
+
 osascript
 ===
 

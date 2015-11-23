@@ -1,0 +1,18 @@
+os: osx
+osx_image: xcode7
+
+env:
+  - NODE_VERSION="0.12"
+  - NODE_VERSION="4"
+  - NODE_VERSION="stable"
+
+install:
+  - rm -rf ~/.nvm
+  - git clone https://github.com/creationix/nvm.git ~/.nvm
+  - source ~/.nvm/nvm.sh
+  - nvm install $NODE_VERSION
+  - node --version
+  - npm install
+
+script:
+  - npm test
