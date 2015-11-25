@@ -129,7 +129,8 @@ All endpoints uses `options`:
 ```javascript
 var defaultOptions = {
   type: 'JavaScript',
-  args: [] // List of string arguments
+  args: [], // List of string arguments
+  flags: [] 
 };
 ```
 
