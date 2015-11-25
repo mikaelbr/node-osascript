@@ -22,6 +22,25 @@ describe('node-osascript', function () {
         done();
       });
     });
+
+    it('should return error from osascript', function (done) {
+      var script = 'Foo;';
+      osascript.eval(script, function (err, response) {
+        expect(err).to.be.an.instanceof(Error);
+        expect(err.toString()).to.match(/^Error: Command failed/);
+        done();
+      });
+    });
+
+    it('should return an error when passing an empty string', function (done) {
+      var script = '';
+      osascript.eval(script, function (err, response) {
+        expect(err).to.be.an.instanceof(Error);
+        expect(err.toString()).to.equal('Error: You need to pass text to evaluate');
+        done();
+      });
+    });
+
   });
 
   describe('using a JavaScript file', function () {
@@ -48,6 +67,15 @@ describe('node-osascript', function () {
       var file = 'test/fixtures/handleArguments.js';
       osascript.file(file, {args: ['Some', 'Values']}, function (error, response) {
         expect(response.trim()).to.equal('Arguments: Some,Values');
+        done();
+      });
+    });
+
+    it('should return an error when passing no file', function (done) {
+      var file = '';
+      osascript.file(file, function (err, response) {
+        expect(err).to.be.an.instanceof(Error);
+        expect(err.toString()).to.equal('Error: You need to specify filename');
         done();
       });
     });
